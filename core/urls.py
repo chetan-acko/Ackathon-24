@@ -4,8 +4,8 @@ from . import views
 
 urlpatterns = [
     path('questions/', views.UserQuestion),
-    path('choices/', views.UserList),
-    path('users/', views.QuestionChoice),
+    path('users/', views.UserList),
+    path('choices/', views.QuestionChoice),
     path('responses/', views.UserResponse),
     path('qn/<int:question_id>', views.SurveyResult),
 ]
