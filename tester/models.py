@@ -1,5 +1,4 @@
 from django.db import models
-from storages.backends.s3boto3 import S3Boto3Storage
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
