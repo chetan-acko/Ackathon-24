@@ -19,3 +19,4 @@ class Responses(models.Model):
     user = models.ForeignKey(User, related_name='responses', on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, related_name='responses', on_delete=models.CASCADE)
 
+
