@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'core',
     'django_extensions',
     'explorer',
-    'tester'
+    'tester',
+    'master'
 ]
 
 MIDDLEWARE = [

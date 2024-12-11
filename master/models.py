@@ -63,15 +63,8 @@ class Variant(BaseModel):
 
 class VariantColor(BaseModel):
 
-    model = models.ForeignKey(Model, on_delete=models.PROTECT)
+    Variant = models.ForeignKey(Variant, on_delete=models.PROTECT)
     name = models.CharField(max_length=50, default=None)
-    slug = models.SlugField(blank=True, null=True, max_length=100)
-    dump_data = JSONField(null=True, blank=True, default=dict)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(
-            "{make} {model} {variant}".format(
-                make=self.model.make.name,
-                model=self.model.name,
-            variant=self.name))
-        super().save(*args, **kwargs)
+    type = models.CharField(max_length=2, default=None)
+    hex_code_primary = models.CharField(max_length=50, default=None)
+    hex_code_secondary = models.CharField(max_length=50, default=None)
