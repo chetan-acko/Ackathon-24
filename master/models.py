@@ -30,6 +30,8 @@ class Make(BaseModel):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.name
 
 class Model(BaseModel):
 
@@ -44,6 +46,9 @@ class Model(BaseModel):
                 make=self.make.name,
                 model=self.name))
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
 
 class Variant(BaseModel):
 
@@ -60,6 +65,9 @@ class Variant(BaseModel):
             variant=self.name))
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.name
+
 
 class VariantColor(BaseModel):
 
@@ -68,3 +76,32 @@ class VariantColor(BaseModel):
     type = models.CharField(max_length=2, default=None)
     hex_code_primary = models.CharField(max_length=50, default=None)
     hex_code_secondary = models.CharField(max_length=50, default=None)
+
+    def __str__(self):
+        variant = self.Variant
+        model = variant.model
+        make = model.make
+        return f"{make.name} {model.name} {variant.name} {self.name}"
+
+
+class BasicFeature(BaseModel):
+
+    variantcolor = models.ForeignKey(VariantColor, on_delete=models.PROTECT, unique=True)
+    body_type = models.CharField(max_length=50, default=None)
+    fuel_type = models.CharField(max_length=2, default=None)
+    transmission_type = models.CharField(max_length=50, default=None)
+
+
+class Price(BaseModel):
+
+    variantcolor = models.ForeignKey(VariantColor, on_delete=models.PROTECT, unique=True)
+    base_price = models.IntegerField(max_digits=10, default=0)
+    discount = models.IntegerField(max_digits=10, default=0)
+
+
+class ConfigFeature(BaseModel):
+
+    variantcolor = models.ForeignKey(VariantColor, on_delete=models.PROTECT, unique=True)
+    body_type = models.CharField(max_length=50, default=None)
+    fuel_type = models.CharField(max_length=2, default=None)
+    transmission_type = models.CharField(max_length=50, default=None)

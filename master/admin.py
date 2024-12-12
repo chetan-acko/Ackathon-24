@@ -20,3 +20,6 @@ class VariantAdmin(admin.ModelAdmin):
 class VariantColorAdmin(admin.ModelAdmin):
     list_display = ("Variant", "name")
 
+@admin.register(models.BasicFeature)
+class BasicFeatureAdmin(admin.ModelAdmin):
+    list_display = ("variantcolor", "body_type", "fuel_type", "transmission_type")
