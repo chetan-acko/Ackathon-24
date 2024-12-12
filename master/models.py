@@ -95,8 +95,8 @@ class BasicFeature(BaseModel):
 class Price(BaseModel):
 
     variantcolor = models.ForeignKey(VariantColor, on_delete=models.PROTECT, unique=True)
-    base_price = models.IntegerField(max_digits=10, default=0)
-    discount = models.IntegerField(max_digits=10, default=0)
+    base_price = models.IntegerField(default=0)
+    discount = models.IntegerField(default=0)
 
 
 class ConfigFeature(BaseModel):

@@ -21,4 +21,5 @@ urlpatterns = [
     path('api/', include("core.urls")),
     path('explorer/', include('explorer.urls')),
     path('tester/', include('tester.urls')),
+    path('master/', include('master.urls')),
 ]
